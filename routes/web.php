@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActifsFinanciersControllers;
+use App\Http\Controllers\AlerteControllers;
 use App\Http\Controllers\DashboardControllers;
 use App\Http\Controllers\StopLossControllers;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,8 @@ Route::post('/actifs/delete', [ActifsFinanciersControllers::class, 'delete'])->n
 Route::get('/actifs/edit/{id}', [ActifsFinanciersControllers::class, 'edit'])->name('actifs.edit');
 
 Route::get('/stop_loss/index', [StopLossControllers::class, 'index'])->name('stop.index');
+Route::post('/stop_loss/create', [StopLossControllers::class, 'create'])->name('stop.create');
+Route::post('/stop_loss/update/{id}', [StopLossControllers::class, 'update'])->name('stop.update');
+Route::post('/stop_loss/delete', [StopLossControllers::class, 'delete'])->name('stop.delete');
+Route::get('/stop_loss/edit/{id}', [StopLossControllers::class, 'edit'])->name('stop.edit');
 

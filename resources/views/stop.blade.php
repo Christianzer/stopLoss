@@ -28,7 +28,7 @@
     @endif
 
 
-    <form action="" method="post">
+    <form action="{{isset($position) ? route("stop.update",$position->id_stop_loss) : route("stop.create")}}" method="post">
         @csrf
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -57,11 +57,11 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label class="font-weight-bold text-uppercase" for="symbole">Niveau Stop Loss</label>
-                        <input type="text" class="form-control font-weight-bold text-uppercase" id="niveau_stop_loss" name="niveau_stop_loss"  value="{{isset($position) ? $position->niveau_stop_loss : ''}}" required>
+                        <input type="number" step="any" class="form-control font-weight-bold text-uppercase" id="niveau_stop_loss" name="niveau_stop_loss"  value="{{isset($position) ? $position->niveau_stop_loss : ''}}" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label class="font-weight-bold text-uppercase" for="quantite">Niveau de declenchement</label>
-                        <input type="number" class="form-control font-weight-bold text-uppercase" id="niveau_declenchement" name="niveau_declenchement"  value="{{isset($position) ? $position->niveau_declenchement : ''}}" required>
+                        <input type="number" step="any" class="form-control font-weight-bold text-uppercase" id="niveau_declenchement" name="niveau_declenchement"  value="{{isset($position) ? $position->niveau_declenchement : ''}}" required>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@
 
     </form>
 
-    <form method="post" action="">
+    <form method="post" action="{{route('stop.delete')}}">
         @csrf
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -103,6 +103,8 @@
 
                     </tr>
 
+
+
                     </thead>
 
 
@@ -111,10 +113,10 @@
                         <tr>
                             <td align="center"><input type="checkbox" id="cocher[]" required name="cocher[]"
                                                       value="{{$item->id_stop_loss}}"></td>
-                            <td><a href="">{{$item->id_stop_loss}}</a></td>
+                            <td><a href="{{route('stop.edit',$item->id_stop_loss)}}">{{$item->id_stop_loss}}</a></td>
                             <td>{{$item->nom}}</td>
-                            <td class="text-right">{{number_format($item->niveau_stop_loss,'0','.',' ')}}</td>
-                            <td class="text-right">{{number_format($item->niveau_declenchement,'0','.',' ')}}</td>
+                            <td class="text-right">{{number_format($item->niveau_stop_loss,'2','.',' ')}}</td>
+                            <td class="text-right">{{number_format($item->niveau_declenchement,'2','.',' ')}}</td>
                             <td>{{$item->etat}}</td>
                         </tr>
 
