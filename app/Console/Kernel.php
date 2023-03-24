@@ -13,6 +13,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('app:fetch-market-data')->everyMinute();
+        $schedule->call(function () {
+            $service = new \App\Services\MarketDataService;
+            $service->process();
+        })->everyMinute();
+        $schedule->job('fetch-market-data')->everyMinute();
     }
 
     /**
