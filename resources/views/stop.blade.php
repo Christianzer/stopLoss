@@ -52,13 +52,14 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label class="font-weight-bold text-uppercase" for="symbole">Niveau Stop Loss</label>
                         <input type="number" step="any" class="form-control font-weight-bold text-uppercase" id="niveau_stop_loss" name="niveau_stop_loss"  value="{{isset($position) ? $position->niveau_stop_loss : ''}}" required>
                     </div>
+                </div>
+
+                <div class="row">
+
                 </div>
 
 
