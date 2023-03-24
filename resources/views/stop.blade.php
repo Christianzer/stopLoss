@@ -59,10 +59,6 @@
                         <label class="font-weight-bold text-uppercase" for="symbole">Niveau Stop Loss</label>
                         <input type="number" step="any" class="form-control font-weight-bold text-uppercase" id="niveau_stop_loss" name="niveau_stop_loss"  value="{{isset($position) ? $position->niveau_stop_loss : ''}}" required>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="font-weight-bold text-uppercase" for="quantite">Niveau de declenchement</label>
-                        <input type="number" step="any" class="form-control font-weight-bold text-uppercase" id="niveau_declenchement" name="niveau_declenchement"  value="{{isset($position) ? $position->niveau_declenchement : ''}}" required>
-                    </div>
                 </div>
 
 
@@ -116,7 +112,6 @@
                             <td><a href="{{route('stop.edit',$item->id_stop_loss)}}">{{$item->id_stop_loss}}</a></td>
                             <td>{{$item->nom}}</td>
                             <td class="text-right">{{number_format($item->niveau_stop_loss,'2','.',' ')}}</td>
-                            <td class="text-right">{{number_format($item->niveau_declenchement,'2','.',' ')}}</td>
                             <td>{{$item->etat}}</td>
                         </tr>
 

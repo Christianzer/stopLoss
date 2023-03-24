@@ -11,7 +11,7 @@ class StopLossControllers extends Controller
     public function index(){
         $stops = DB::table('stop_loss')
             ->join('actifs_financiers', 'stop_loss.actif_financier_id', '=', 'actifs_financiers.id_actifs_financiers')
-            ->select('stop_loss.id_stop_loss', 'actifs_financiers.nom', 'stop_loss.niveau_stop_loss', 'stop_loss.niveau_declenchement', 'stop_loss.etat')
+            ->select('stop_loss.id_stop_loss', 'actifs_financiers.nom', 'stop_loss.niveau_stop_loss', 'stop_loss.etat')
             ->where('utilisateur_id', '=', 1)
             ->get();
         $list_actifs = DB::table('actifs_financiers')->orderBy("id_actifs_financiers", "ASC")->pluck("nom","id_actifs_financiers");
@@ -21,13 +21,13 @@ class StopLossControllers extends Controller
     public function create(Request $request){
         $actif_financier_id = $request->input('actif_financier_id');
         $niveau_stop_loss = $request->input('niveau_stop_loss');
-        $niveau_declenchement = $request->input('niveau_declenchement');
+
 
         $insert = DB::table('stop_loss')->insert([
             'actif_financier_id' => $actif_financier_id,
             'niveau_stop_loss' => $niveau_stop_loss,
             'utilisateur_id' => 1,
-            'niveau_declenchement' => $niveau_declenchement,
+
         ]);
 
         if ($insert){
@@ -53,13 +53,13 @@ class StopLossControllers extends Controller
     public function update($id,Request $request){
         $actif_financier_id = $request->input('actif_financier_id');
         $niveau_stop_loss = $request->input('niveau_stop_loss');
-        $niveau_declenchement = $request->input('niveau_declenchement');
+
 
         $insert = DB::table('stop_loss')->where("id_stop_loss",'=',$id)->update([
             'actif_financier_id' => $actif_financier_id,
             'niveau_stop_loss' => $niveau_stop_loss,
             'utilisateur_id' => 1,
-            'niveau_declenchement' => $niveau_declenchement,
+
         ]);
 
         if ($insert){
@@ -73,7 +73,7 @@ class StopLossControllers extends Controller
     public function edit($id){
         $stops = DB::table('stop_loss')
             ->join('actifs_financiers', 'stop_loss.actif_financier_id', '=', 'actifs_financiers.id_actifs_financiers')
-            ->select('stop_loss.id_stop_loss', 'actifs_financiers.nom', 'stop_loss.niveau_stop_loss', 'stop_loss.niveau_declenchement', 'stop_loss.etat')
+            ->select('stop_loss.id_stop_loss', 'actifs_financiers.nom', 'stop_loss.niveau_stop_loss', 'stop_loss.etat')
             ->where('utilisateur_id', '=', 1)
             ->get();
         $position = DB::table('stop_loss')->where("id_stop_loss",'=',$id)
