@@ -57,6 +57,13 @@ class GetMarketData extends Command
                     ->update(array(
                         "etat"=>"desactive"
                     ));
+
+                DB::table("actifs_financiers_montant")
+                    ->insert(array(
+                        'symbole_boursier' => $symbole,
+                        'montant' => (float)$prix_trading,
+                    ));
+
             }
 
 
@@ -86,11 +93,6 @@ class GetMarketData extends Command
             $stopLossPourcentage = round($stopLossSymbole->niveau_stop_loss/100,3);
             $id_stop_loss = $stopLossSymbole->id_stop_loss;
             $this->sendAlert($symbole,$stopLossPourcentage,$id_stop_loss,$currentPrice);
-            DB::table("actifs_financiers_montant")
-                ->insert(array(
-                    'symbole_boursier' => $symbole,
-                    'montant' => (float)$currentPrice,
-                ));
 
 
         }
