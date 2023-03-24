@@ -12,7 +12,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $service = new \App\Http\Controllers\TradingController();
+            $service->getStockData();
+        })->everyMinute();
+
+
     }
 
     /**
